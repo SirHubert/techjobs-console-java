@@ -2,6 +2,7 @@ package org.launchcode.techjobs.console;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -61,7 +62,8 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+
+                    printJobs(JobData.findByValue(searchField, searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -110,7 +112,33 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        String jobInfo = null;
+        if (someJobs.size() == 0){
+            System.out.println("No jobs found");
+        }
+        for (HashMap<String, String> job : someJobs){
+            jobInfo = "\n****\n";
 
-        System.out.println("printJobs is not implemented yet");
+
+            for (Map.Entry<String, String> jobColumn : job.entrySet()) {
+                jobInfo += jobColumn.getKey() + ":" + jobColumn.getValue() + "\n";
+
+
+            }
+            jobInfo += ("\n*****\n");
+            System.out.println(jobInfo);
+
+        }
+
+
+
+
+
+
+
     }
-}
+
+    }
+//Find value Job Data Hint: 1st 3 lines of findby column and value
+//for(key : keySet()
+//String aValue getKey from keyset above
