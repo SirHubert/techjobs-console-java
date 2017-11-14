@@ -95,7 +95,10 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
             for (String jobValue : row.values())
             {
-                if (jobValue.equalsIgnoreCase(value)){
+                String jobValueLower = jobValue.toLowerCase();
+                String valueLower = value.toLowerCase();
+
+                if (jobValueLower.contains(valueLower)){
                     jobs.add(row);
                 }
             }
